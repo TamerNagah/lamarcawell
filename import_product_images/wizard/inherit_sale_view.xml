@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Sale order form view-->
+
+   <record model="ir.ui.view" id="wizard_import_product_variants">
+            <field name="name">wizard.import.product.variants</field>
+            <field name="model">import.product.product</field>
+            <field name="arch" type="xml">
+              <form string="Import Data">
+                <group>
+                    <field name="upload_file"/>
+                </group>
+                <footer>
+                    <button name="import_apartments" string="Import Products" type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+
+            </field>
+        </record>
+
+        <!--<act_window-->
+            <!--name="Import Product"-->
+            <!--id="action_import_product"-->
+            <!--res_model="import.product.product"-->
+            <!--binding_model="product.product"-->
+            <!--binding_views="list"-->
+            <!--view_mode="form"-->
+            <!--target="new"-->
+            <!--/>-->
+
+     <record id="action_view_import_product_variants" model="ir.actions.act_window">
+            <field name="name">Import Product</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">import.product.product</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <!-- TODO: check if we need this -->
+            <field name="binding_model_id" ref="purchase.model_product_template" />
+            <field name="binding_view_types">list</field>
+        </record>
+
+
+</odoo>

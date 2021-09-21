@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ir_cron_repository" model="ir.cron">
+        <field name="name">Update Repo</field>
+        <field name="model_id" ref="se_repository_management.model_repository_repository"/>
+        <field name="state">code</field>
+        <field name="code">model._default_repository_ids()</field>
+        <field name="user_id" ref="base.user_admin"/>
+        <field name="interval_number">10</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+    </record>
+
+</odoo>
