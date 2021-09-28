@@ -18,7 +18,7 @@ class purchase_order_line(models.Model):
                 line.update({
                     'price_tax': taxes['total_included'] - taxes['total_excluded'],
                     'price_total': taxes['total_included'] ,
-                    'price_subtotal': taxes['total_excluded'] - discount,
+                    'price_subtotal': taxes['total_included'] - discount,
                 })
             else:
                 line.update({
