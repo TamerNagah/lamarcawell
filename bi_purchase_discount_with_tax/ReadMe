@@ -1,0 +1,48 @@
+14.0.0.1 ==> fixed issue of tax in untax discount method.
+14.0.0.2 ==>fixed issue in calculation of order line when discount applies on taxed amount and discount method is percentage for both purchase and vendor bill.
+14.0.0.3 ==>fixed issue at confirmation of purchase order.
+14.0.0.4 ==>fixed issue of installation and qty according to control policy for vendor bill.
+
+
+date 5/05/21
+version:- 14.0.0.5
+issue solve:-
+	--> In the Invoice the Discount column is not visible on the customer invoice .
+	--> total amount is not the same as the amount due in vendor bill.
+	--> Tax amount is not passed in the journal entry 
+
+
+date 17/05/21
+version:- 14.0.0.6
+issue solve:-
+	--> once cache clean config setting not getting by user
+
+date 17/05/21
+version:- 14.0.0.7
+issue solve:-
+	--> Discount Setting  it always select the "Taxed amount" 
+
+date 20/05/21
+version:- 14.0.0.8
+issue solve:-
+	--> tax calculation not working properly update whole code for module calculation for tax/untax amount
+
+date 18/06/21
+version:- 14.0.0.9
+issue solve:-
+	--> issue solve when we create vendor bill and discount applied in orderlines
+
+date 24/06/21
+version:- 14.0.1.0
+issue solve:-
+	- for English lang account show in config but other lang not wroking properly.
+
+date 29/06/21
+version:- 14.0.2.0
+issue solve:-
+	- multi currency issue resolve for tax and untax amount.
+
+date 7/07/21
+version:- 14.0.3.0
+issue solve:-
+	- multi currency issue resolve now
