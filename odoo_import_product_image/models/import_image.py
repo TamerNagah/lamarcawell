@@ -204,7 +204,7 @@ class bi_import_product_image(models.Model):
                             prod_search = model.search([('default_code', '=', values.get('code'))])
 
                     if prod_search:
-                        prod_search.write({'image_128': f,'image_1920':f,'nombre_image_ultimo':values.get('image_1920').split('/')[-1]})
+                        prod_search.write({'image_128': f,'image_1920':f,})
                         _logger.error('Importado !'+str(row_no))
 
 
