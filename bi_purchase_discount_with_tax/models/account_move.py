@@ -77,6 +77,8 @@ class account_move(models.Model):
 				raise UserError(_("Cannot create unbalanced journal entry. Ids: %s\nDifferences debit - credit: %s") % (ids, sums))
 
 
+
+
 	@api.depends(
 		'line_ids.matched_debit_ids.debit_move_id.move_id.payment_id.is_matched',
 		'line_ids.matched_debit_ids.debit_move_id.move_id.line_ids.amount_residual',
@@ -171,12 +173,12 @@ class account_move(models.Model):
 					total = 0
 					for line in self.invoice_line_ids:
 						if line.discount_method == 'per':
-							total += line.price_subtotal * (line.discount_amount/ 100)
+							tax = line.com_tax()
+							total += (line.price_subtotal+tax) * (line.discount_amount/ 100)
 						elif line.discount_method == 'fix':
 							total += line.discount_amount
 					move.discount_amt_line = total
 					move.amount_total = sign * (move.amount_tax + move.amount_untaxed - move.discount_amt_line)
-		
 				elif move.discount_type == 'global':
 					if move.discount_method == 'fix':
 						move.discount_amt = move.discount_amount
@@ -401,4 +403,14 @@ class account_move_line(models.Model):
 	discount_amt = fields.Float('Discount Final Amount')    
 	is_global_disc = fields.Boolean(string = "Global Discount")
 	# price_unit = fields.Float(string='Unit Price', digits=(12,6))
+
+	@api.depends('quantity','price','tax_ids')
+	def com_tax(self):
+		tax_total = 0.0
+		tax = 0.0
+		for line in self:
+			for tax in line.tax_ids:
+				tax_total += (tax.amount/100)*line.price_subtotal
+			tax = tax_total
+			return tax
 

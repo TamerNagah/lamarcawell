@@ -46,3 +46,6 @@ date 7/07/21
 version:- 14.0.3.0
 issue solve:-
 	- multi currency issue resolve now
+
+
+14.0.3.1 ==>fixed issue of order line when taxed amount is applied.
