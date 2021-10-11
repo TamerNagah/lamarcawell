@@ -34,6 +34,8 @@ class ProductProduct(models.Model):
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
+    standard_price = fields.Float(store=True)
+
     def write(self, vals):
         """
         This method use to archive/unarchive woo product templates base on odoo product templates.
