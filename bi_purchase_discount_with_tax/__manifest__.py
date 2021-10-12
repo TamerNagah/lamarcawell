@@ -2,7 +2,7 @@
 # Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
 {
     'name': 'Purchase & Vendor Bills Discount with Tax Calculation in Odoo',
-    'version': '14.0.3.1',
+    'version': '14.0.3.2',
     'category': 'Purchase',
     'sequence': 14,
     'price': 29,

@@ -404,7 +404,7 @@ class account_move_line(models.Model):
 	is_global_disc = fields.Boolean(string = "Global Discount")
 	# price_unit = fields.Float(string='Unit Price', digits=(12,6))
 
-	@api.depends('quantity','price','tax_ids')
+	@api.depends('quantity','price','tax_ids','discount_amount')
 	def com_tax(self):
 		tax_total = 0.0
 		tax = 0.0

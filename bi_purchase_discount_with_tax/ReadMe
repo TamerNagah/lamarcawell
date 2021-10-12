@@ -49,3 +49,4 @@ issue solve:-
 
 
 14.0.3.1 ==>fixed issue of order line when taxed amount is applied.
+14.0.3.2 ==>fixed issue of purchase order line when taxed amount is applied.
