@@ -92,7 +92,6 @@ class ExportSaleMargin(models.TransientModel):
         if sale_order_ids:
             for sale_id in sale_order_ids:
                 if sale_id.lines:
-                    product_domain = self.product_ids.ids
                     for line in sale_id.lines:
                         content_style = content
                         center_cell = content_center
