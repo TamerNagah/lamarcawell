@@ -20,7 +20,6 @@ For Module Support : devintelle@gmail.com  or Skype : devintelle
                         <field name="end_date"/>
                     </group>
                 </group>
-                <field name="highlight_negative_margin"/> <label for="highlight_negative_margin" string="Highlight Negative Margin"/>
                 <footer>
                     <button string=" Export Excel" name="export_sale_margin_report" type="object"
                             class="oe_highlight" icon="fa-file-excel-o"/>&#160;or
