@@ -91,9 +91,9 @@ class ExportSaleMargin(models.TransientModel):
         row_counter = 9
         if sale_order_ids:
             for sale_id in sale_order_ids:
-                if sale_id.order_line:
+                if sale_id.lines:
                     product_domain = self.product_ids.ids
-                    for line in sale_id.line:
+                    for line in sale_id.lines:
                         content_style = content
                         center_cell = content_center
                         decimal_right_content = content_right
