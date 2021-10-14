@@ -82,6 +82,7 @@ Odoo manage print sale margin report
     'summary': 'sale margin pdf excel report, sale profit report, margin by sales team, sale margin product wise, Sales margin Product category wise, Sale Profit by Sales team, Sales margin by sales person, date wise sales margin, sales margin warehouse',
     'depends': ['sale_management', 'sale_margin', 'stock'],
     'data': [
+            'security/ir.model.access.csv',
             'wizard/export_sale_margin_view.xml',
             #"'report/template_sale_margin_report.xml',
             #'report/menu_sale_margin_report.xml'
