@@ -6,6 +6,8 @@ from odoo import models, fields
 class ProductProduct(models.Model):
     _inherit = 'product.product'
 
+    standard_price = fields.Float(store=True)
+
     def _compute_woo_product_count(self):
         woo_product_obj = self.env['woo.product.product.ept']
         for product in self:
