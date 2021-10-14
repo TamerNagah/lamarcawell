@@ -40,7 +40,7 @@ For Module Support : devintelle@gmail.com  or Skype : devintelle
     </record>
 
     <!--Menus-->
-    <menuitem name="Sale Margin Report"
+    <menuitem name="Reporte de ventas del Pos"
               id="menu_print_sale_margin_reports"
               parent="point_of_sale.menu_point_rep"
               action="action_export_sale_margin_report"
