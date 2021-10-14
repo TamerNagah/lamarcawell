@@ -42,7 +42,7 @@ For Module Support : devintelle@gmail.com  or Skype : devintelle
     <!--Menus-->
     <menuitem name="Sale Margin Report"
               id="menu_print_sale_margin_reports"
-              parent="sale.menu_sale_report"
+              parent="point_of_sale.menu_point_rep"
               action="action_export_sale_margin_report"
               sequence="0"/>
 </odoo>
