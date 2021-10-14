@@ -36,7 +36,8 @@ class purchase_order(models.Model):
                 if line.discount_method == 'fix':
                     line_discount += line.discount_amount
                 elif line.discount_method == 'per':
-                    line_discount += line.price_subtotal * (line.discount_amount/ 100)
+                    tax = line.com_tax()
+                    line_discount += (line.price_subtotal+tax) * (line.discount_amount/ 100)
             if res_config:
                 if res_config.tax_discount_policy == 'tax':
                     if order.discount_type == 'line':
@@ -366,6 +367,16 @@ class purchase_order_line(models.Model):
     discount_amount = fields.Float('Discount Amount')
     discount_amt = fields.Float('Discount Final Amount')
 
+
+    @api.depends('product_qty','price_unit','taxes_id','discount_amount')
+    def com_tax(self):
+        tax_total = 0.0
+        tax = 0.0
+        for line in self:
+            for tax in line.taxes_id:
+                tax_total += (tax.amount/100)*line.price_subtotal
+            tax = tax_total
+            return tax
     @api.depends('product_qty', 'price_unit', 'taxes_id','discount_method','discount_amount','discount_type')
     def _compute_amount(self):
         for line in self:
