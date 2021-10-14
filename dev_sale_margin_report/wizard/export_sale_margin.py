@@ -64,15 +64,15 @@ class ExportSaleMargin(models.TransientModel):
         end_date = end.strftime('%d/%m/%Y')
         worksheet.write(5,5,end_date, content_date2)
         worksheet.write_merge(7, 8, 0, 0, 'Ticket ', sub_header)
-        worksheet.write_merge(7, 8, 1, 2, 'Fecha', sub_header)
-        worksheet.write_merge(7, 8, 2, 3, 'Cliente', sub_header)
-        worksheet.write_merge(7, 8, 3, 1, 'Product', sub_header)
-        worksheet.write_merge(7, 8, 4, 1, 'Cantidad', sub_header)
-        worksheet.write_merge(7, 8, 5, 7, 'Precio', sub_header)
-        worksheet.write_merge(7, 8, 6, 7, 'IVA', sub_header)
+        worksheet.write_merge(7, 8, 1, 1, 'Fecha', sub_header)
+        worksheet.write_merge(7, 8, 2, 2, 'Cliente', sub_header)
+        worksheet.write_merge(7, 8, 3, 3, 'Product', sub_header)
+        worksheet.write_merge(7, 8, 4, 4, 'Cantidad', sub_header)
+        worksheet.write_merge(7, 8, 5, 5, 'Precio', sub_header)
+        worksheet.write_merge(7, 8, 6, 6, 'IVA', sub_header)
         worksheet.write_merge(7, 8, 7, 7, 'Cost', sub_header)
-        worksheet.write_merge(7, 8, 8, 9, 'Proveedor', sub_header)
-        worksheet.write_merge(7, 8, 9, 6, 'Cajero', sub_header)
+        worksheet.write_merge(7, 8, 8, 8, 'Proveedor', sub_header)
+        worksheet.write_merge(7, 8, 9, 9, 'Cajero', sub_header)
 
 
 
