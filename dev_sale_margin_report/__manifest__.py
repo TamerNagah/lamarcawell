@@ -83,8 +83,8 @@ Odoo manage print sale margin report
     'depends': ['sale_management', 'sale_margin', 'stock'],
     'data': [
             'wizard/export_sale_margin_view.xml',
-            'report/template_sale_margin_report.xml',
-            'report/menu_sale_margin_report.xml'
+            #"'report/template_sale_margin_report.xml',
+            #'report/menu_sale_margin_report.xml'
         ],
     'demo': [],
     'test': [],
