@@ -109,7 +109,7 @@ class ExportSaleMargin(models.TransientModel):
                             tax_text += tax.name+' ,'
                         worksheet.write(row_counter, 6, tax_text or '',  content_style)
                         worksheet.write(row_counter, 7, line.product_id.standard_price or 0,  decimal_right_content)
-                        worksheet.write(row_counter, 8, line.product_id.variant_seller_ids[0].name or 0,  content_style)
+                        worksheet.write(row_counter, 8, line.product_id.variant_seller_ids[0].name if line.product_id.variant_seller_ids else '',  content_style)
                         worksheet.write(row_counter, 9, sale_id.user_id.name or '',  content_style)
 
                         row_counter += 1
