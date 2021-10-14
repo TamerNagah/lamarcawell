@@ -23,8 +23,6 @@ For Module Support : devintelle@gmail.com  or Skype : devintelle
                 <footer>
                     <button string=" Export Excel" name="export_sale_margin_report" type="object"
                             class="oe_highlight" icon="fa-file-excel-o"/>&#160;or
-                    <button string=" Print PDF" name="print_pdf_sale_margin" type="object"
-                            class="oe_highlight" />&#160;or
                     <button string="Close Window" class="oe_link" special="cancel"/>
                 </footer>
             </form>

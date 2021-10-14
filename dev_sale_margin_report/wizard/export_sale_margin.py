@@ -67,12 +67,12 @@ class ExportSaleMargin(models.TransientModel):
         worksheet.write_merge(7, 8, 1, 2, 'Fecha', sub_header)
         worksheet.write_merge(7, 8, 2, 3, 'Cliente', sub_header)
         worksheet.write_merge(7, 8, 3, 1, 'Product', sub_header)
-        worksheet.write_merge(7, 8, 3, 1, 'Cantidad', sub_header)
-        worksheet.write_merge(7, 8, 4, 7, 'Precio', sub_header)
-        worksheet.write_merge(7, 8, 5, 7, 'IVA', sub_header)
-        worksheet.write_merge(7, 8, 6, 7, 'Cost', sub_header)
-        worksheet.write_merge(7, 8, 7, 9, 'Proveedor', sub_header)
-        worksheet.write_merge(7, 8, 6, 6, 'Cajero', sub_header)
+        worksheet.write_merge(7, 8, 4, 1, 'Cantidad', sub_header)
+        worksheet.write_merge(7, 8, 5, 7, 'Precio', sub_header)
+        worksheet.write_merge(7, 8, 6, 7, 'IVA', sub_header)
+        worksheet.write_merge(7, 8, 7, 7, 'Cost', sub_header)
+        worksheet.write_merge(7, 8, 8, 9, 'Proveedor', sub_header)
+        worksheet.write_merge(7, 8, 9, 6, 'Cajero', sub_header)
 
 
 
@@ -101,17 +101,17 @@ class ExportSaleMargin(models.TransientModel):
                         worksheet.write(row_counter, 0, sale_id.name or '',  center_cell)
                         order_date = datetime.strptime(str(sale_id.date_order), "%Y-%m-%d %H:%M:%S").strftime('%d/%m/%Y')
                         worksheet.write(row_counter, 1, order_date or '',  center_cell)
-                        worksheet.write(row_counter, 6, sale_id.partner_id.name or '',  content_style)
-                        worksheet.write(row_counter, 1, line.full_product_name or '',  content_style)
-                        worksheet.write(row_counter, 1, line.qty or '',  decimal_right_content)
-                        worksheet.write(row_counter, 1, line.price_subtotal_incl or '',  decimal_right_content)
+                        worksheet.write(row_counter, 2, sale_id.partner_id.name or '',  content_style)
+                        worksheet.write(row_counter, 3, line.full_product_name or '',  content_style)
+                        worksheet.write(row_counter, 4, line.qty or '',  decimal_right_content)
+                        worksheet.write(row_counter, 5, line.price_subtotal_incl or '',  decimal_right_content)
                         tax_text=''
                         for tax in  line.tax_ids_after_fiscal_position:
                             tax_text += tax.name+' ,'
-                        worksheet.write(row_counter, 1, tax_text or '',  content_style)
+                        worksheet.write(row_counter, 6, tax_text or '',  content_style)
                         worksheet.write(row_counter, 7, line.product_id.standard_price or 0,  decimal_right_content)
-                        worksheet.write(row_counter, 7, line.product_id.variant_seller_ids[0].name or 0,  content_style)
-                        worksheet.write(row_counter, 6, sale_id.user_id.name or '',  content_style)
+                        worksheet.write(row_counter, 8, line.product_id.variant_seller_ids[0].name or 0,  content_style)
+                        worksheet.write(row_counter, 9, sale_id.user_id.name or '',  content_style)
 
                         row_counter += 1
 
