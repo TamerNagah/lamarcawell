@@ -20,7 +20,7 @@ odoo.define('pos_orders_all.GiftCouponButton', function(require) {
 	ProductScreen.addControlButton({
 		component: GiftCouponButton,
 		condition: function() {
-			return this.env.pos.config.check;
+			return true;
 		},
 	});
 

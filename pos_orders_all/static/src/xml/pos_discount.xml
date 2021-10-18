@@ -3,43 +3,29 @@
 	
 		<!-- Orderline WIdget -->
 		<t t-extend="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension" owl="1">
-			<xpath expr="//ul[hasclass('info-list')]" position="replace"> 
-				<ul class="info-list">
-					<t t-if="props.line.get_quantity_str() !== '1' || props.line.selected ">
+			<xpath expr="//ul/t[2]" position="replace"> 
+				<t t-if="props.line.get_discount_str() !== '0'">
+					<t t-if="env.pos.config.discount_type == 'percentage'">
 						<li class="info">
+							With a
 							<em>
-								<t t-esc="props.line.get_quantity_str()" />
+								<t t-esc="props.line.get_discount_str()" />%
 							</em>
-							<t t-esc="props.line.get_unit().name" />
-							at
-							<t t-esc="env.pos.format_currency(props.line.get_unit_display_price(),'Product Price')" />
-							/
-							<t t-esc="props.line.get_unit().name" />
+							discount
 						</li>
 					</t>
-					<t t-if="props.line.get_discount_str() !== '0'">
-						<t t-if="env.pos.config.discount_type == 'percentage'">
-							<li class="info">
-								With a
-								<em>
-									<t t-esc="props.line.get_discount_str()" />%
-								</em>
-								discount
-							</li>
-						</t>
-						
-						<t t-if="env.pos.config.discount_type == 'fixed'">
-							<li class="info">
-								With a
-								<em>
-									<t t-esc="env.pos.format_currency(props.line.get_discount_str())"/>
-								</em>
-								discount
-							</li>
-						</t>
-						
+					
+					<t t-if="env.pos.config.discount_type == 'fixed'">
+						<li class="info">
+							With a
+							<em>
+								<t t-esc="env.pos.format_currency(props.line.get_discount_str())"/>
+							</em>
+							discount
+						</li>
 					</t>
-				</ul>
+					
+				</t>
 			</xpath>
 		</t>
  

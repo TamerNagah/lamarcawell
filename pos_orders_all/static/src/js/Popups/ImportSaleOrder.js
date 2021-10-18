@@ -10,7 +10,7 @@ odoo.define('pos_orders_all.ImportSaleOrder', function(require) {
 
 	class ImportSaleOrder extends AbstractAwaitablePopup {
 		constructor() {
-			super(...arguments);			
+			super(...arguments);		
 		}
 
 		do_import(){

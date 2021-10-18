@@ -4,7 +4,7 @@
 from odoo import fields, models, api, _
 from datetime import date, datetime
 import random
-
+import pytz
 
 class PosOrderLineInherit(models.Model):
 	_inherit = 'pos.order.line'
@@ -73,7 +73,7 @@ class pos_order(models.Model):
 					'name': payment.payment_method_id.name
 				}
 				paymentlines.append(temp)
-
+		tz = pytz.timezone(self.user_id.tz or 'UTC')
 		vals = {
 			'discount': discount,
 			'orderlines': orderlines,
@@ -82,9 +82,9 @@ class pos_order(models.Model):
 			'subtotal': self.amount_total - self.amount_tax,
 			'tax': self.amount_tax,
 			'barcode': self.barcode,
-			'user_name' : self.user_id.name
+			'user_name' : self.user_id.name,
+			'date_order':self.date_order.now(tz=tz).strftime("%Y-%m-%d %H:%M:%S")
 		}
-
 		return vals
 
 

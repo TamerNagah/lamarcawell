@@ -53,8 +53,19 @@ odoo.define('pos_orders_all.CreateSale', function(require) {
 				method: 'create_sales_order',
 				args: [1, partner_id, pos_product_list, cashier_id],
 			}).then(function(output) {
-				alert('Sales Order '+ output+' is Created !!!!');
-				self.env.pos.delete_current_order();
+				if(orderlines.length > 0){
+					for (var line in orderlines)
+					{
+						order.remove_orderline(order.get_orderlines());
+					}
+				}
+				order.set_client(false)
+	            self.showPopup('ConfirmPopup', {
+	                title: self.env._t('Sale Order Information'),
+	                body: self.env._t(
+	                    'Sales Order '+ output+' is Created !!!!'
+	                ),
+	            });
 			});
 		}
 	}

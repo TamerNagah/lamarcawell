@@ -18,37 +18,35 @@
 
 		<t t-name="ProductItem" t-inherit="point_of_sale.ProductItem" t-inherit-mode="extension" owl="1">
 			<xpath expr="//div[hasclass('product-img')]" position="inside">
-				<t t-if="env.pos.config.pos_display_stock">
-					
-					<t t-if="env.pos.config.pos_stock_type == 'onhand'">
-						<span class="price-tag" id="stockqty" style="right: 90px;">
-							<t t-if="env.pos.config.show_stock_location == 'specific'">
-								<t t-esc="props.product.bi_on_hand"/>
-							</t>
-							<t t-if="env.pos.config.show_stock_location == 'all'">
-								<t t-esc="props.product.qty_available"/>
-							</t>
-						</span>
-					</t>
-					<t t-if="env.pos.config.pos_stock_type == 'incoming'">
-						<span class="price-tag" style="right: 90px;">
-							<t t-esc="props.product.incoming_qty"/>
-						</span>
-					</t>
-					<t t-if="env.pos.config.pos_stock_type == 'outgoing'">
-						<span class="price-tag" style="right: 90px;">
-							<t t-esc="props.product.outgoing_qty"/>
-						</span>
-					</t>
-					<t t-if="env.pos.config.pos_stock_type == 'available'">
-						<span class="price-tag" id="availqty" style="right: 90px;">
-							<t t-if="env.pos.config.show_stock_location == 'specific'">
-								<t t-esc="props.product.bi_available"/>
-							</t>
-							<t t-if="env.pos.config.show_stock_location == 'all'">
-								<t t-esc="props.product.virtual_available"/>
-							</t>
-						</span>
+				<t t-if="props.product.type != 'consu' and props.product.type != 'service'">
+					<t t-if="env.pos.config.pos_display_stock">
+						<t t-if="env.pos.config.pos_stock_type == 'onhand'">
+							<span class="price-tag" id="stockqty" style="right: 90px;">
+								<t t-if="env.pos.config.show_stock_location != 'specific'">
+									<t t-esc="props.product.bi_on_hand"/>
+								</t>
+							</span>
+						</t>
+						<t t-if="env.pos.config.pos_stock_type == 'incoming'">
+							<span class="price-tag" style="right: 90px;">
+								<t t-esc="props.product.incoming_qty"/>
+							</span>
+						</t>
+						<t t-if="env.pos.config.pos_stock_type == 'outgoing'">
+							<span class="price-tag" style="right: 90px;">
+								<t t-esc="props.product.outgoing_qty"/>
+							</span>
+						</t>
+						<t t-if="env.pos.config.pos_stock_type == 'available'">
+							<span class="price-tag" id="availqty" style="right: 90px;">
+								<t t-if="env.pos.config.show_stock_location == 'specific'">
+									<t t-esc="props.product.bi_available"/>
+								</t>
+								<t t-if="env.pos.config.show_stock_location == 'all'">
+									<t t-esc="props.product.virtual_available"/>
+								</t>
+							</span>
+						</t>
 					</t>
 				</t>
 			</xpath>

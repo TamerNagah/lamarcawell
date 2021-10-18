@@ -185,6 +185,7 @@
 			<div class="pos-receipt-order-data">
 				<div><t t-esc='props.order.pos_reference' /></div>
 				<div><t t-esc='props.order.date_order' /></div>
+				
 			</div>
 			<t t-if="env.pos.config.show_barcode">
 				<div>

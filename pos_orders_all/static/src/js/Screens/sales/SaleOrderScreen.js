@@ -143,7 +143,7 @@ odoo.define('pos_orders_all.SaleOrderScreen', function (require) {
 					return [['date_order', '>=',today],['state','in',['draft','sent']]];
 				}
 				else{
-					return [['date_order', '>=',today]];
+					return [['date_order', '>=',today],['state','not in',['cancel']]];
 				}
 			}
 			else{

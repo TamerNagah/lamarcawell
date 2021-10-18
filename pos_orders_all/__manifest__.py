@@ -2,11 +2,11 @@
 # Part of BrowseInfo. See LICENSE file for full copyright and licensing details.
 
 {
-    "name": "All in One POS Features in Odoo",
-    "version": "14.0.0.6",
-    "category": "Point of Sale",
-    'summary': 'POS all in one features pos Reorder pos Reprint pos Coupon Discount pos Order Return POS Stock pos gift pos order all pos all features pos discount pos order list print pos receipt pos item count pos bag charges import sale from pos create quote from pos',
-    "description": """
+	"name" : "All in One POS Features in Odoo",
+	"version" : "14.0.1.1",
+	"category" : "Point of Sale",
+	'summary': 'POS all in one features pos Reorder pos Reprint pos Coupon Discount pos Order Return POS Stock pos gift pos order all pos all features pos discount pos order list print pos receipt pos item count pos bag charges import sale from pos create quote from pos',
+	"description": """
 
 	Purpose :-
 	odoo All pos features All in One - POS All Orders List
@@ -190,34 +190,34 @@ odoo Create Sales Order from Point of Sale Create SO from POS Create sales from 
 		This odoo apps helps to import order and import product from specific sale order or import whole sales order in point of sales system 
 
 	""",
-    "author": "BrowseInfo",
-    "depends": ['base', 'sale_management', 'account', 'point_of_sale', 'pos_hr'],
-    "price": 109,
-    "currency": 'EUR',
-    "website": "https://www.browseinfo.in",
-    "data": [
-        'security/ir.model.access.csv',
-        'data/data.xml',
-        'views/assets.xml',
-        'views/pos_config_view.xml',
-        'views/pos_order_view.xml',
-        'views/account_view.xml',
-        'views/pos_gift_coupon.xml',
-        'views/report_pos_gift_coupon.xml',
-    ],
-    'qweb': [
-        'static/src/xml/pos_orders_list.xml',
-        'static/src/xml/reorder_reprint_return.xml',
-        'static/src/xml/sale_orders.xml',
-        'static/src/xml/pos_bag_charges.xml',
-        'static/src/xml/item_count.xml',
-        'static/src/xml/pos_discount.xml',
-        'static/src/xml/pos_stock.xml',
-        'static/src/xml/gift_coupon_voucher.xml',
-    ],
-    "auto_install": False,
-    "installable": True,
-    "images": ['static/description/Banner.png'],
-    "live_test_url": 'https://youtu.be/cbgN3yzZS1U',
+	"author": "BrowseInfo",
+	"depends" : ['base','sale_management','account','point_of_sale'],
+	"price": 109,
+	"currency": 'EUR',
+	"website" : "https://www.browseinfo.in",
+	"data": [
+		'security/ir.model.access.csv',
+		'data/data.xml',
+		'views/assets.xml',
+		'views/pos_config_view.xml',
+		'views/pos_order_view.xml',
+		'views/account_view.xml',
+		'views/pos_gift_coupon.xml',
+		'views/report_pos_gift_coupon.xml',
+	],
+	'qweb': [
+		'static/src/xml/pos_orders_list.xml',
+		'static/src/xml/reorder_reprint_return.xml',
+		'static/src/xml/sale_orders.xml',
+		'static/src/xml/pos_bag_charges.xml',
+		'static/src/xml/item_count.xml',
+		'static/src/xml/pos_discount.xml',
+		'static/src/xml/pos_stock.xml',
+		'static/src/xml/gift_coupon_voucher.xml',
+	],
+	"auto_install": False,
+	"installable": True,
+	"images":['static/description/Banner.png'],
+	"live_test_url":'https://youtu.be/cbgN3yzZS1U',
 }
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

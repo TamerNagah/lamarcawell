@@ -138,7 +138,7 @@
 							<div class="o_setting_right_pane">
 								<label for="pos_allow_order"/>
 								<div class="text-muted">
-									Allow pos order when product is out of stock stock.
+									Allow pos order when product is out of stock.
 								</div>
 							</div>
 						</div>

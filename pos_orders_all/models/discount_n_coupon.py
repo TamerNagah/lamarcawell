@@ -59,7 +59,6 @@ class PosOrder(models.Model):
 			order.amount_tax = currency.round(sum(self._amount_line_tax(line, order.fiscal_position_id) for line in order.lines))
 			amount_untaxed = currency.round(sum(line.price_subtotal for line in order.lines))
 			order.amount_total = order.amount_tax + amount_untaxed
-			# order.amount_total = order.amount_paid
 
 
 	@api.model
@@ -220,8 +219,6 @@ class ReportSaleDetailsInherit(models.AbstractModel):
 		"""
 		if not configs:
 			configs = self.env['pos.config'].search([])
-		else:
-			configs = self.env['pos.config'].search([('id','=',configs)])
 
 		user_tz = pytz.timezone(self.env.context.get('tz') or self.env.user.tz or 'UTC')
 		today = user_tz.localize(fields.Datetime.from_string(fields.Date.context_today(self)))
@@ -244,14 +241,12 @@ class ReportSaleDetailsInherit(models.AbstractModel):
 
 		date_start = fields.Datetime.to_string(date_start)
 		date_stop = fields.Datetime.to_string(date_stop)
-		data=[
+
+		orders = self.env['pos.order'].search([
 			('date_order', '>=', date_start),
 			('date_order', '<=', date_stop),
 			('state', 'in', ['paid','invoiced','done']),
-			]
-		if len(configs)>0:
-			data.append(('config_id', 'in', configs.ids))
-		orders = self.env['pos.order'].search(data)
+			('config_id', 'in', configs.ids)])
 
 		user_currency = self.env.user.company_id.currency_id
 

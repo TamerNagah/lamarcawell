@@ -91,6 +91,7 @@ odoo.define('pos_orders_all.POSOrdersScreen', function (require) {
 			}).then(function(output) {
 				let data = output;
 				data['order'] = order;
+				data['order']['date_order'] = output.date_order
 				self.showTempScreen('OrderReprintScreen',data);
 			});
 		}
@@ -280,7 +281,7 @@ odoo.define('pos_orders_all.POSOrdersScreen', function (require) {
 
 		async get_pos_orders () {
 			let self = this;
-			let pos_domain = self.get_orders_domain();
+			let pos_domain = self.get_orders_domain() || [];
 			let load_orders = [];
 			let load_orders_line = [];
 			let order_ids = [];

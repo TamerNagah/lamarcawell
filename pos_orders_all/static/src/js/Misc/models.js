@@ -17,7 +17,7 @@ odoo.define('pos_orders_all.models', function(require) {
 	});
 
 	models.load_fields('res.company', ['point_of_sale_update_stock_quantities'])
-
+	models.load_fields('res.user', ['tz'])
 	models.load_fields('product.product', ['type','virtual_available',
 		'available_quantity','qty_available','incoming_qty','outgoing_qty',
 		'is_coupon_product']);
@@ -132,7 +132,7 @@ odoo.define('pos_orders_all.models', function(require) {
 
 		remove_orderline: function( line ){
 			var prod = line.product;
-			if(prod.is_coupon_product){
+			if(prod && prod.is_coupon_product){
 				this.set_is_coupon_used(false);
 			}
 			this.assert_editable();
@@ -198,42 +198,46 @@ odoo.define('pos_orders_all.models', function(require) {
 		},
 		
 		get_all_prices: function(){
-			
+			var self = this
 			if (this.pos.config.discount_type == 'percentage')
 			{
 				var price_unit = this.get_unit_price() * (1.0 - (this.get_discount() / 100.0));
 			}
 			if (this.pos.config.discount_type == 'fixed')
 			{
-				// var price_unit = this.get_unit_price() - this.get_discount();
 				var price_unit = this.get_base_price()/this.get_quantity();		
 			}	
 			var taxtotal = 0;
 
 			var product =  this.get_product();
-			var taxes_ids = product.taxes_id;
+			var taxes_ids = _.filter(product.taxes_id, t => t in this.pos.taxes_by_id);
 			var taxes =  this.pos.taxes;
 			var taxdetail = {};
 			var product_taxes = [];
 
 			_(taxes_ids).each(function(el){
-				product_taxes.push(_.detect(taxes, function(t){
-					return t.id === el;
-				}));
+	            var tax = _.detect(taxes, function(t){
+	                return t.id === el;
+	            });
+				product_taxes.push.apply(product_taxes, self._map_tax_fiscal_position(tax));
 			});
+			product_taxes = _.uniq(product_taxes, function(tax) { return tax.id; });
 
 			var all_taxes = this.compute_all(product_taxes, price_unit, this.get_quantity(), this.pos.currency.rounding);
-			_(all_taxes.taxes).each(function(tax) {
-				taxtotal += tax.amount;
-				taxdetail[tax.id] = tax.amount;
-			});
+			var all_taxes_before_discount = this.compute_all(product_taxes, price_unit, this.get_quantity(), this.pos.currency.rounding);
+	        _(all_taxes.taxes).each(function(tax) {
+	            taxtotal += tax.amount;
+	            taxdetail[tax.id] = tax.amount;
+	        });
 
-			return {
-				"priceWithTax": all_taxes.total_included,
-				"priceWithoutTax": all_taxes.total_excluded,
-				"tax": taxtotal,
-				"taxDetails": taxdetail,
-			};
+	        return {
+	            "priceWithTax": all_taxes.total_included,
+	            "priceWithoutTax": all_taxes.total_excluded,
+	            "priceSumTaxVoid": all_taxes.total_void,
+	            "priceWithTaxBeforeDiscount": all_taxes_before_discount.total_included,
+	            "tax": taxtotal,
+	            "taxDetails": taxdetail,
+	        };
 		},
 
 		get_display_price_one: function(){

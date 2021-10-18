@@ -84,7 +84,6 @@
     text-transform: lowercase;
     text-decoration: none;
 }
-
 .ms-options-wrap > .ms-options .ms-selectall:hover {
     text-decoration: underline;
 }
@@ -107,7 +106,6 @@
 .ms-options-wrap > .ms-options > ul > li.optgroup {
     padding: 5px;
 }
-
 .ms-options-wrap > .ms-options > ul > li.optgroup + li.optgroup {
     border-top: 1px solid #aaa;
 }
@@ -126,7 +124,6 @@
     margin: 2px 0;
     font-size: 14px;
 }
-
 .ms-options-wrap > .ms-options.checkbox-autofit > ul label,
 .ms-options-wrap > .ms-options.hide-checkbox > ul label {
     padding: 4px;
@@ -160,26 +157,24 @@
     clip: rect(1px 1px 1px 1px);
     clip: rect(1px, 1px, 1px, 1px);
 }
-
-.pos .popup .body li:before {
+.pos .popup .body li:before{
     content: '';
     position: relative;
     font-size: 0.6em;
     left: -1em;
     bottom: 0.2em;
 }
-
 .pos .popup .body li {
     text-indent: 0px;
 }
 
 
-.control-button {
+.control-button{
     background: #875a7b !important;
     color: white !important;
 }
 
-.odoo-theme-button {
+.odoo-theme-button{
     background: #875a7b !important;
     color: white !important;
     font-size: 14px !important;

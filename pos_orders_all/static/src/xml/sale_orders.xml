@@ -177,10 +177,29 @@
 							</thead>
 							<tbody>
 								<tr class="orderline-table" t-foreach="props.orderline || []" t-as="line1">
-									<td style='width:25%; padding-left: 10px; '><span t-if="line1['product_id']" t-esc='line1.product_id[1]' /></td>
-									<td style='width:25%; padding-left: 10px; '><span t-esc='line1.product_uom_qty' /></td>
-									<td style='width:25%; padding-left: 10px; '><span t-esc='line1.price_unit' /></td>
-									<td style='width:25%; padding-left: 10px; '><span t-esc='line1.price_subtotal' /></td>
+									<td style='width:25%; padding-left: 10px; '>
+										<t t-if="line1.product_id">
+											<span t-esc='line1.product_id[1]' />
+										</t>
+										<t t-else="">
+											<t t-esc='line1.name' />
+										</t>
+									</td>
+									<td style='width:25%; padding-left: 10px; '>
+										<t t-if="line1.product_id">
+											<span t-esc='line1.product_uom_qty' />
+										</t>
+									</td>
+									<td style='width:25%; padding-left: 10px; '>
+										<t t-if="line1.product_id">
+											<span t-esc='line1.price_unit' />
+										</t>
+									</td>
+									<td style='width:25%; padding-left: 10px; '>
+										<t t-if="line1.product_id">
+											<span t-esc='line1.price_subtotal' />
+										</t>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -213,13 +232,26 @@
 							</thead>
 							<tbody class='import-product-list-contents'>
 								<tr class="orderline-table" t-foreach="props.orderlines || []" t-as="item">
-									<td><t t-esc='item.product_id[1]' /></td>
-									<td><t t-esc='item.product_uom_qty' /></td>
+									<td>
+										<t t-if="item.product_id">
+											<t t-esc='item.product_id[1]' />
+										</t>
+										<t t-else="">
+											<t t-esc='item.name' />
+										</t>
+									</td>
+									<td>
+										<t t-if="item.product_id">
+											<t t-esc='item.product_uom_qty' />
+										</t>
+									</td>
 									<td class="entered_item_qty">
-										<input type="text" name="qty" style="margin: 5px;"
-											t-att-line-id='item.id' t-att-qty-id='item.product_uom_qty'
-											class="input-field">
-										</input>
+										<t t-if="item.product_id">
+											<input type="text" name="qty" style="margin: 5px;"
+												t-att-line-id='item.id' t-att-qty-id='item.product_uom_qty'
+												class="input-field">
+											</input>
+										</t>
 									</td>
 								</tr>
 							</tbody>

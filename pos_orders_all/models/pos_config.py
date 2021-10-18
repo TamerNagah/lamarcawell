@@ -9,7 +9,8 @@ class pos_config(models.Model):
 
 	def _get_default_location(self):
 		return self.env['stock.warehouse'].search([('company_id', '=', self.env.user.company_id.id)], limit=1).lot_stock_id
-
+	
+	
 	# pos orders screen
 	show_order = fields.Boolean('Show Orders')
 	pos_session_limit = fields.Selection([('all',  "Load all Session's Orders"), ('last3', "Load last 3 Session's Orders"), ('last5', " Load last 5 Session's Orders"),('current_day', "Only Current Day Orders"), ('current_session', "Only Current Session's Orders")], string='Session limit',default="current_day")
@@ -46,9 +47,6 @@ class pos_config(models.Model):
 		'stock.location', string='Stock Location',
 		domain=[('usage', '=', 'internal')], required=True, 
 		default=_get_default_location)
-
-	op_typ_loc_id = fields.Many2one('stock.location', string='Operation Type Location',
-		related='picking_type_id.default_location_src_id')
 
 	# Credit note
 	credit_note = fields.Selection([('create_note','Create Return order Credit note'),

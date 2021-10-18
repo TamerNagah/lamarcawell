@@ -28,7 +28,6 @@ odoo.define('pos_orders_all.SelectExistingCouponPopup', function(require){
 				if (order.get_client() != null){
 					partner_id = order.get_client();
 				}
-				selectedOrder.coupon_id = entered_code;
 				let total_amount = selectedOrder.get_total_without_tax();
 				await self.rpc({
 					model: 'pos.gift.coupon',
@@ -38,7 +37,6 @@ odoo.define('pos_orders_all.SelectExistingCouponPopup', function(require){
 				}).then(function(output) {
 					if(output.length > 0)
 					{
-						order.coupon_id = output[0];
 						let amount = output[1];
 						used = output[2];
 						let coupon_count = output[3];
@@ -131,19 +129,27 @@ odoo.define('pos_orders_all.SelectExistingCouponPopup', function(require){
 								'body':self.env._t("Coupon is not applicable here."),
 							});
 						}
-						else {
+						else { 
 							if(max_amount >= amount){
 								let update_coupon_amount = max_amount - amount
 								order.coup_maxamount = update_coupon_amount;
 								let total_val = total_amount - amount;
 								let product = self.env.pos.db.get_product_by_id(product_id);
-								let selectedOrder = self.env.pos.get('selectedOrder');
-								selectedOrder.add_product(product, {
-									price: -amount,
-									quantity: 1.0,
-								});
-								order.set_is_coupon_used(true);
-								self.trigger('close-popup');
+								if(product == undefined){
+									Gui.showPopup('ErrorPopup', {
+										'title': self.env._t('Product Not Available !!!'),
+										'body': self.env._t("Product Not available in POS."),
+									});
+								}else{
+									let selectedOrder = self.env.pos.get('selectedOrder');
+									selectedOrder.add_product(product, {
+										price: -amount,
+										quantity: 1.0,
+									});
+									order.set_is_coupon_used(true);
+									order.coupon_id = output[0];
+									self.trigger('close-popup');
+								}
 							}else{
 								Gui.showPopup('ErrorPopup', {
 									'title': self.env._t('Discount Limit Exceeded !!!'),

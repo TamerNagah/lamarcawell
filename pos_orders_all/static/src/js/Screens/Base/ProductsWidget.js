@@ -47,12 +47,16 @@ odoo.define('pos_orders_all.ProductsWidget', function(require) {
 								method: 'get_products_stock_location_qty',
 								args: [1, location,prod_ids],
 							}).then(function(output) {
+								self.env.pos.loc_onhand = output[0];
 								$.each(prods, function( i, prd ){
 									prd['bi_on_hand'] = prd.qty_available;
 									prd['bi_available'] = prd.virtual_available;
-									for(let key in output[0]){
+									for(let key in self.env.pos.loc_onhand){
 										if(prd.id == key){
-											prd.bi_on_hand = output[0][key];
+											prd['bi_on_hand'] = self.env.pos.loc_onhand[key];
+											var product_qty_final = $("[data-product-id='"+prd.id+"'] #stockqty");
+											product_qty_final.text();
+											product_qty_final.text(self.env.pos.loc_onhand[key]);
 										}
 									}
 								});
@@ -85,6 +89,11 @@ odoo.define('pos_orders_all.ProductsWidget', function(require) {
 								self.env.pos.set("is_sync",false);
 							});
 						}
+					}else{
+					 	$.each(prods, function( i, prd ){
+							prd['bi_on_hand'] = prd.qty_available;
+							prd['bi_available'] = prd.virtual_available;
+						});
 					}
 				}
 				else{

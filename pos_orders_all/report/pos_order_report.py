@@ -38,8 +38,7 @@ class PosOrderReport(models.Model):
 				pt.pos_categ_id,
 				s.pricelist_id,
 				s.session_id,
-				s.account_move IS NOT NULL AS invoiced,
-				s.employee_id AS employee_id
+				s.account_move IS NOT NULL AS invoiced
 
 		"""
 

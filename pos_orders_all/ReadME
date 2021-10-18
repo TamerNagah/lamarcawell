@@ -20,8 +20,35 @@ Version 14.0.0.4 : (17/12/20)
 		- Fix bug of display multiple time stock values on product after refresh.
 		- Update code for multi-select functionality in create coupon popup.
 
-Version 14.0.0.5 : (29/12/20)
-		- Add new field for operation type location.
+date 21/12/2020
+version : 14.0.0.5
+issue solve:-
+	- only stackable product show quantity
 
-Version 14.0.0.6 : (09/02/21)
-		- Update code for qunatity display on pos screen.
+date 6th jan 2021
+version 14.0.0.6
+issue solve:-
+	- orderline notes not show issue solve
+	- return order from barcode issue solve
+	- reprint order show wrong date issue solve
+
+date 8th jan 2021
+version 14.0.0.7
+issue solve:-
+	- fiscal position issue resolve
+
+date 8th feb 2021
+version 14.0.0.8
+issue solve:-
+	- after create sale order pos not working properly.
+
+version :-14.0.0.9(12/02/21)
+issue solve:-
+	- gift coupon functionality gives error while product is not available in pos.
+
+
+Version 14.0.1.0 : (17/03/20)
+	- Update domain for sale orders load.
+
+Version 14.0.1.1 : (25/03/20)
+	- Display sale orderline note/section in Sale Detail view and Import SO popup.
