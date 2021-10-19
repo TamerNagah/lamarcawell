@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="se_pos_tickets" name="se_pos_tickets assets" inherit_id="point_of_sale.assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/se_pos_tickets/static/src/js/ReceiptScreen.js"/>
+            <script type="text/javascript" src="/se_pos_tickets/static/src/js/ReprintReceiptScreen.js"/>
+            <script type="text/javascript" src="/se_pos_tickets/static/src/js/GiftReceipt.js"/>
+            <script type="text/javascript" src="/se_pos_tickets/static/src/js/VoucherReceipt.js"/>
+        </xpath>
+    </template>
+</odoo>
