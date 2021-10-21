@@ -35,12 +35,15 @@ class PrepareProductForExport(models.TransientModel):
             ("product_tmpl_id", "=", product_template.id)])
 
         woo_template_vals = self.prepare_woo_template_layer_vals(woo_instance, product_template, product_type)
-
+        woo_categ_id=False
         if product_template.categ_id:
             self.create_categ_in_woo(product_template.categ_id, woo_instance.id, woo_category_dict)
             for cat_extra in product_template.category_extra_ids:
                 self.create_categ_in_woo(cat_extra, woo_instance.id, woo_category_dict)
-                woo_categ_id=self.update_category_info(cat_extra, woo_instance.id)
+                if woo_categ_id:
+                    woo_categ_id|=self.update_category_info(cat_extra, woo_instance.id)
+                else:
+                    woo_categ_id|=self.update_category_info(cat_extra, woo_instance.id)
             woo_categ_id|= self.update_category_info(product_template.categ_id, woo_instance.id)
 
             woo_template_vals.update({'woo_categ_ids': [(6, 0, woo_categ_id.ids)]})
